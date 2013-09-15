@@ -8,9 +8,9 @@ public class CurrentConditionsDisplay implements Observer {
 	private float temp;
 	
 	
-	public CurrentConditionsDisplay(Observable observable){
-		this.weatherData = observable;
-		observable.addObserver(this);
+	public CurrentConditionsDisplay(Observable weatherData){
+		this.weatherData = weatherData;
+		weatherData.addObserver(this);
 	}
 	@Override
 	public void update(Observable arg0, Object arg1) {

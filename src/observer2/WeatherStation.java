@@ -7,7 +7,7 @@ public class WeatherStation {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-	WeatherData weatherData = new WeatherData();
+		WeatherData weatherData = new WeatherData();
 		
 		CurrentConditionsDisplay ccd1 = new CurrentConditionsDisplay(weatherData);
 		
