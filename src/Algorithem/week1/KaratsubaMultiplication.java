@@ -1,30 +1,32 @@
-package Algorithm;
+package Algorithem.week1;
 
 public class KaratsubaMultiplication {
 
 	public static void main(String[] args) {
 		KaratsubaMultiplication test = new KaratsubaMultiplication();
-		int product = test.multiply(1234, 5678);
+		int product = test.multiply(1234567, 12);
 		System.out.println(product);
 	}
 
 	private int multiply(int i, int j) {
 		System.out.println(i + "*" + j );
 		if (digit(i) == 1 || digit(j) == 1){
+			System.out.println("=" + i*j);
 			return i * j;
 		}
-		int n = digit (i);
-		System.out.println(n);
-		int b = i % (int)Math.pow(10, n/2);
-		int a = (i - b) / (int)Math.pow(10,  n/2);
-		int d = j % (int) Math.pow(10, n/2);
-		int c = (j - d) / (int) Math.pow(10, n/2);
-		System.out.println(a + " " + b + " " + c + " " + d);
+		int n = Math.max(digit (i), digit(j)) / 2;
+		int m  = (int)Math.pow(10, n);
+		int b = i % m;
+		int a = (i - b) / m;
+		int d = j % m;
+		int c = (j - d) / m;
+		System.out.println("A=" + a + " B=" + b + " C=" + c + " D=" + d);
 		int r1 = multiply(a, c);
 		int r2 = multiply(b, d);
 		int r3 = multiply(a + b,  c + d);
-		int r = r1 * (int) Math.pow(10, n) + r2 + (r3 - r2 - r1) * (int)Math.pow(10, n/2);	
-		System.out.println(r1 + " " + r2 + " " + r3);
+		System.out.println("AC=" + r1 + " BD=" + r2 + " (A+C)(B+D)=" + r3);
+		int r = r1 * m * m + r2 + (r3 - r2 - r1) * m;
+		System.out.println("R=" + r);
 		return r;
 	}
 	
