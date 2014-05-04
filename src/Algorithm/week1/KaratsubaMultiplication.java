@@ -1,4 +1,4 @@
-package Algorithem.week1;
+package Algorithm.week1;
 
 public class KaratsubaMultiplication {
 
