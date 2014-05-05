@@ -3,9 +3,8 @@ public class BubbleSort {
 
 	public static void main(String[] args) {
 		int[] a = { 2, 1, 5, 7, 3, 8, 9, 0, 4, 6 };
-		int[] b = {9,8,7,6,5,4,3,2,1,0};
 		BubbleSort bubbleSort = new BubbleSort();
-		bubbleSort.sort(b);
+		bubbleSort.sort(a);
 
 	}
 
