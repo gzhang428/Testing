@@ -1,13 +1,13 @@
-package Algorithm.week1;
+package algorithm.week1;
 
-public class InsertionSort {
+public class InsertionSort extends Sort {
 	public static void main(String[] args) {
 		int[] a = { 2, 1, 5, 7, 3, 8, 9, 0, 4, 6 };
 		InsertionSort insertionSort = new InsertionSort();
 		insertionSort.sort(a);
 
 	}
-
+	@Override
 	public void sort(int[] a) {
 		for (int j = 1; j < a.length; j++){
 			int i;
@@ -26,11 +26,5 @@ public class InsertionSort {
 			System.out.println("i=" + i);
 			print(a);
 		}
-	}
-	public void print(int[] a) {
-		for (int i = 0; i < a.length; i++) {
-			System.out.print(a[i]);
-		}
-		System.out.println();
 	}
 }
