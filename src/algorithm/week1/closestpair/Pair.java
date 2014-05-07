@@ -9,6 +9,9 @@ public class Pair {
 	public Pair(Point start, Point end){
 		this.start = start;
 		this.end = end;
+	}
+	
+	public void updateDistance(){
 		if (start == null || end == null){
 			distance = Double.MAX_VALUE;
 		} else {

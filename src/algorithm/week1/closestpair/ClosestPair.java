@@ -31,9 +31,13 @@ public class ClosestPair {
 
 	private Pair findClosestPair(List<Point> xSortedPoints, List<Point> ySortedPoints) {
 		if (xSortedPoints.size() == 1){
-			return new Pair(null, null);
+			Pair pair = new Pair(null, null);
+			pair.updateDistance();
+			return pair;
 		} else if (xSortedPoints.size() == 2){
-			return new Pair( xSortedPoints.get(0),  xSortedPoints.get(1));
+			Pair pair = new Pair( xSortedPoints.get(0),  xSortedPoints.get(1));
+			pair.updateDistance();
+			return pair;
 		} else {
 			int mid = xSortedPoints.size() / 2;
 			List<Point> xSortedLeft = xSortedPoints.subList(0, mid);
@@ -96,6 +100,7 @@ public class ClosestPair {
 				if (distance < min){
 					min = distance;
 					pair= new Pair(start, end);
+					pair.distance = distance;
 				}
 			}
 		}
