@@ -18,8 +18,8 @@ public class Pair {
 			distance =  Math.sqrt((start.x - end.x) * (start.x - end.x) + (start.y - end.y) * (start.y - end.y));
 		}
 	}
-	
+
 	public String toString(){
-		return String.format("start=%s end=%s distance=%f\n", start, end, distance);
+		return String.format("start=%s end=%s distance=%f", start, end, distance);
 	}
 }

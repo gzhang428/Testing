@@ -11,20 +11,18 @@ public class ClosestPair {
 
 	public static void main(String[] args) {
 		List<Point> points = new ArrayList<Point>();
-//		points.add(new Point(1, 1));
-//		points.add(new Point(1, 3));
-//		points.add(new Point(2, 3));
-//		points.add(new Point(4, 2));
+		
 		
 		Random r = new Random();
-		for (int i = 0; i < 50000; i ++){
-			points.add(new Point(r.nextDouble(), r.nextDouble()));
+		for (int i = 0; i < 100000; i ++){
+			points.add(new Point(r.nextInt(), r.nextInt()));
 		}
 		
 		ClosestPair closestPair = new ClosestPair();
-		Pair pair = closestPair.bruteForce(points);
-		System.out.println(pair);
-		//pair = closestPair.divideAndConque(points);
+		Pair pair1 = closestPair.bruteForce(points);
+		System.out.println(pair1);
+		Pair pair2 = closestPair.divideAndConque(points);
+		System.out.println(pair2);
 	}
 
 	private Pair divideAndConque(List<Point> points) {
@@ -32,7 +30,6 @@ public class ClosestPair {
 		Collections.sort(xSortedPoints, new PointComparator("x"));
 		List<Point> ySortedPoints = new ArrayList<Point>(points);
 		Collections.sort(ySortedPoints, new PointComparator("y"));
-		
 		return findClosestPair(xSortedPoints, ySortedPoints);
 	}
 
@@ -51,18 +48,59 @@ public class ClosestPair {
 			List<Point> xSortedRight = xSortedPoints.subList(mid, xSortedPoints.size());
 			List<Point> ySortedLeft = getYSortedHalf(ySortedPoints, xSortedLeft);
 			List<Point> ySortedRight = getYSortedHalf(ySortedPoints, xSortedRight);
-			double xCenter = (xSortedLeft.get(xSortedLeft.size() - 1).x + xSortedRight.get(0).x) / 2;
 			
+			double xCenter = (xSortedLeft.get(xSortedLeft.size() - 1).x + xSortedRight.get(0).x) / 2;
 			Pair left = findClosestPair(xSortedLeft, ySortedLeft);
 			Pair right = findClosestPair(xSortedRight, ySortedRight);
-			
-			double delta = Math.min(left.distance, right.distance);
-			Pair split = findSplitClosestPair(xSortedLeft, ySortedLeft, xSortedRight, ySortedRight, xCenter, delta);
-			
+			double delta;
+			Pair pair;
+			if (left.distance <= right.distance){
+				pair = left;
+				delta = left.distance;
+			} else {
+				pair = right;
+				delta = right.distance;
+			}
+			Pair split = findSplitClosestPair(ySortedPoints, xCenter, delta);
+			if (split == null){
+				return pair;
+			} else{
+				return split;
+			}
 		}
-		
-		return null;
 	}
+
+	private Pair findSplitClosestPair(List<Point> ySortedPoints, double xCenter, double delta) {
+		double min = delta;
+		Pair pair = null;
+		List<Point> ySortedStrip = new ArrayList<Point>();
+		for (Point p: ySortedPoints){
+			if (p.x > xCenter - delta && p.x < xCenter + delta){
+				ySortedStrip.add(p);
+			}
+		}
+		for (int i = 0; i < ySortedStrip.size(); i++){
+			Point p1 = ySortedStrip.get(i);
+			int checkedPoints = 0;
+			for (int j = i + 1; j < ySortedStrip.size(); j++){
+				Point p2 = ySortedStrip.get(j);
+				if (p2.y < p1.y + delta && (p1.x < xCenter && p2.x > xCenter) || (p1.x > xCenter && p2.x < xCenter)){
+					double distance = getDistance(p1, p2);
+					if (distance < min){
+						min = distance;
+						pair = new Pair(p1, p2);
+						pair.distance = distance;
+					}
+					checkedPoints++;
+					if (checkedPoints == 4){
+						break;
+					}
+				}
+			}
+		}
+		return pair;
+	}
+
 
 	private List<Point> getYSortedHalf(List<Point> ySortedPoints, List<Point> xSortedLeft) {
 		List<Point> res = new ArrayList<Point>();
@@ -74,27 +112,6 @@ public class ClosestPair {
 		}
 		return res;
 	}
-
-	private Pair findSplitClosestPair(List<Point> xSortedLeft, List<Point> ySortedLeft, 
-			List<Point> xSortedRight, List<Point> ySortedRight, double xCenter, double delta) {
-		for (int i = xSortedLeft.size() - 1; i >= 0; i--){
-			Point p = xSortedLeft.get(i);
-			if (p.x > xCenter - delta){
-				
-			}
-		}
-		
-		for (int i = 0; i < xSortedRight.size(); i++){
-			Point p = xSortedRight.get(i);
-			if (p.x < xCenter + delta){
-				
-			}
-		}
-		
-		
-		return null;
-	}
-
 
 	public Pair bruteForce(List<Point> points) {
 		double min = Double.MAX_VALUE;
