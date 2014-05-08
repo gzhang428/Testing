@@ -82,7 +82,7 @@ public class ClosestPair {
 		for (int i = 0; i < ySortedStrip.size(); i++){
 			Point p1 = ySortedStrip.get(i);
 			int checkedPoints = 0;
-			for (int j = i + 1; j < ySortedStrip.size(); j++){
+			for (int j = i + 1; j < Math.min(i + 8, ySortedStrip.size()); j++){
 				Point p2 = ySortedStrip.get(j);
 				if (p2.y < p1.y + delta && (p1.x < xCenter && p2.x > xCenter) || (p1.x > xCenter && p2.x < xCenter)){
 					double distance = getDistance(p1, p2);
