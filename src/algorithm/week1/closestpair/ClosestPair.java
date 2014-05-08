@@ -4,20 +4,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 public class ClosestPair {
 
 	public static void main(String[] args) {
 		List<Point> points = new ArrayList<Point>();
-		points.add(new Point(1, 1));
-		points.add(new Point(1, 3));
-		points.add(new Point(2, 3));
-		points.add(new Point(4, 2));
+//		points.add(new Point(1, 1));
+//		points.add(new Point(1, 3));
+//		points.add(new Point(2, 3));
+//		points.add(new Point(4, 2));
+		
+		Random r = new Random();
+		for (int i = 0; i < 50000; i ++){
+			points.add(new Point(r.nextDouble(), r.nextDouble()));
+		}
+		
 		ClosestPair closestPair = new ClosestPair();
 		Pair pair = closestPair.bruteForce(points);
 		System.out.println(pair);
-		pair = closestPair.divideAndConque(points);
+		//pair = closestPair.divideAndConque(points);
 	}
 
 	private Pair divideAndConque(List<Point> points) {

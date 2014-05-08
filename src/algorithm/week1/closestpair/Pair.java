@@ -15,12 +15,8 @@ public class Pair {
 		if (start == null || end == null){
 			distance = Double.MAX_VALUE;
 		} else {
-			distance = getDistance(start, end);
+			distance =  Math.sqrt((start.x - end.x) * (start.x - end.x) + (start.y - end.y) * (start.y - end.y));
 		}
-	}
-	
-	private double getDistance(Point start, Point end) {
-		return Math.sqrt((start.x - end.x) * (start.x - end.x) + (start.y - end.y) * (start.y - end.y));
 	}
 	
 	public String toString(){
