@@ -1,4 +1,4 @@
-package algorithm.week1;
+package algorithm.week1.sort;
 
 public class InsertionSort extends Sort {
 	public static void main(String[] args) {
