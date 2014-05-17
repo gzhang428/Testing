@@ -1,5 +1,6 @@
 package algorithm.sort;
 
+
 public class QuickSort extends Sort {
 
 	public static void main(String[] args){
@@ -33,12 +34,18 @@ public class QuickSort extends Sort {
 		}
 		swap(a, i, low);
 		return i;
-		
-		
-		
 	}
 
+	// median of first, middle and last element
 	private int choosePivot(int[] a, int low, int high) {
+		int mid = (low + high - 1) / 2;
+		int pivotIndex = low;
+		if (a[mid] > Math.min(a[low], a[high - 1]) && a[mid] < Math.max(a[low], a[high - 1])){
+			pivotIndex = mid;
+		} else if (a[high - 1] > Math.min(a[low], a[mid]) && a[high - 1] < Math.max(a[low], a[mid])){
+			pivotIndex = high - 1;
+		}
+		swap(a, low, pivotIndex);
 		return a[low];
 	}
 
