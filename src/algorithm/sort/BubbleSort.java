@@ -1,4 +1,4 @@
-package algorithm.week1.sort;
+package algorithm.sort;
 public class BubbleSort extends Sort {
 
 	public static void main(String[] args) {

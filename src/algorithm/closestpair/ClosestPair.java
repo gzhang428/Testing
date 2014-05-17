@@ -1,4 +1,4 @@
-package algorithm.week1.closestpair;
+package algorithm.closestpair;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package algorithm.week1.sort;
+package algorithm.sort;
 
 public abstract class Sort {
 	public abstract void sort(int[] a);

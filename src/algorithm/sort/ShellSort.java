@@ -1,4 +1,4 @@
-package algorithm.week1.sort;
+package algorithm.sort;
 public class ShellSort extends Sort {
 	public static void main(String[] args) {
 		int[] a = { 2, 1, 5, 7, 3, 8, 9, 0, 4, 6 };

@@ -1,4 +1,4 @@
-package algorithm.week1.closestpair;
+package algorithm.closestpair;
 
 public class Pair {
 	public Point start;

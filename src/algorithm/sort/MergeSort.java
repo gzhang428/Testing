@@ -1,4 +1,4 @@
-package algorithm.week1.sort;
+package algorithm.sort;
 
 
 public class MergeSort extends Sort {
