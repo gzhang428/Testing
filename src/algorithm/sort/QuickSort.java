@@ -23,7 +23,7 @@ public class QuickSort extends Sort {
 		}
 	}
 
-	private int partition(int[] a, int low, int high) {
+	protected int partition(int[] a, int low, int high) {
 		int p = choosePivot(a, low, high);
 		int i = low; // last element of left part
 		for (int j = low + 1; j < high; j++){
