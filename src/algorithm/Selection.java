@@ -2,7 +2,7 @@ package algorithm;
 
 import algorithm.sort.QuickSort;
 
-public class Selection extends QuickSort{
+public class Selection extends QuickSort {
 
 	public static void main(String[] args) {
 		int[] a = { 2, 1, 5, 7, 3, 8, 9, 0, 4, 6 };
@@ -28,5 +28,6 @@ public class Selection extends QuickSort{
 		}
 		return a[low];
 	}
+
 
 }
