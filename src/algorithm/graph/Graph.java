@@ -1,5 +1,6 @@
 package algorithm.graph;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -28,17 +29,22 @@ public class Graph {
 		return sb.toString();
 	}
 
-	public void addEdge(int start, int end) {
-		vertice[start].adjacencyList.add(vertice[end]);
+	public void addEdge(int start, int end, int weight) {
+		vertice[start].edges.add(new Edge(vertice[start], vertice[end], weight));
 		E ++;
+	}
+
+	public void addEdge(int start, int end) {
+		addEdge(start, end, 1);
 	}
 
 
 	public void removeEdge(int startIndex, int endIndex) {
-		List<Vertex> endVertice = vertice[startIndex].adjacencyList;
-		for (Vertex v: endVertice){
-			if (v.index == endIndex){
-				endVertice.remove(v);
+		List<Edge> edges = vertice[startIndex].edges;
+		for (Iterator<Edge> it = edges.iterator(); it.hasNext(); ){
+			Edge e = it.next();
+			if (e.end.index  == endIndex){
+				it.remove();
 			}
 		}
 		E --;

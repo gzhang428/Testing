@@ -1,0 +1,26 @@
+package algorithm.sort;
+
+import algorithm.Heap;
+
+public class HeapSort extends Sort {
+
+	@Override
+	public void sort(int[] a) {
+		Heap heap = new Heap(a);
+		for (int i = 0; i < a.length; i ++){
+			try {
+				a[i] = heap.extractMin();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		int[] a = { 2, 1, 5, 7, 3, 8, 9, 0, 4, 6 };
+		HeapSort heapSort = new HeapSort();
+		heapSort.sort(a);
+		heapSort.print(a);
+	}
+
+}

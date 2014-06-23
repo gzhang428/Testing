@@ -1,16 +1,13 @@
 package algorithm.graph;
 
 public class Edge {
-	public int start;
-	public int end;
+	public Vertex start;
+	public Vertex end;
+	public int weight;
 	
-	public Edge(int start, int end){
-		this.start =  start;
+	public Edge(Vertex start, Vertex end, int weight){
+		this.start = start;
 		this.end = end;
+		this.weight = weight;
 	}
-	
-	public String toString(){
-		return start + "->" + end + "\n";
-	}
-	
 }
