@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import algorithm.Heap;
+
 public class DijkstraShortestPath {
 
 	public static void main(String[] args) {
@@ -42,9 +44,9 @@ public class DijkstraShortestPath {
 		return g;
 	}
 
-	private int findShortedPath(Graph g, int i, int j) {
+	public int findShortedPath(Graph g, int start, int end) {
 		List<Vertex> visitedVertice = new ArrayList<Vertex>();
-		Vertex startVertex = g.vertice[i];
+		Vertex startVertex = g.vertice[start];
 		startVertex.distance = 0;
 		startVertex.visited = true;
 		visitedVertice.add(startVertex);
@@ -69,13 +71,20 @@ public class DijkstraShortestPath {
 				next.distance = min;
 				next.visited = true;
 				visitedVertice.add(next);
-				if (next == g.vertice[j]){
+				if (next == g.vertice[end]){
 					return next.distance;
 				}
 			}
 		}
 	}
-
+	
+	
+	public int findShortestPathWithHeap(Graph g, int start, int end){
+	//	Heap heap = new Heap(g.V);
+		
+		return 0;
+	}
+	
 	private Graph createGraph() {
 		Graph g = new Graph(4);
 		g.addEdge(0, 1, 1);

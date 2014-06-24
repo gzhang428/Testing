@@ -1,18 +1,19 @@
 package algorithm;
 import java.util.Arrays;
 
-public class Heap {
-	private int[] array;
+@SuppressWarnings("unchecked")
+public class Heap<T extends Comparable<T>> {
+	private T[] array;
 	private int size;
 
 	public Heap(int capacity) {
 		size = 0;
-		array = new int[capacity + 1];
+		array = (T[]) new Comparable[capacity + 1];
 	}
 
-	public Heap(int[] a) {
+	public Heap(T[] a) {
 		size = a.length;
-		array = new int[a.length + 1];
+		array = (T[]) new Comparable[a.length + 1];
 		for (int i = 0; i < a.length; i++){
 			array[i + 1] = a[i];
 		}
@@ -27,21 +28,21 @@ public class Heap {
 		return size == 0;
 	}
 
-	public int findMin() throws Exception {
+	public T findMin() {
 		if (isEmpty()) {
-			throw new Exception("Empty Heap");
+			return null;
 		}
 		return array[1];
 	}
 
-	public void insert(int x) {
+	public void insert(T x) {
 		if (size >= array.length - 1){
 			resize();
 		}
 		size ++;
 		int pos;
 		for (pos = size; pos > 1; pos /= 2) {
-			if ( x < array[pos / 2]){
+			if ( x.compareTo(array[pos / 2]) < 0){
 				array[pos] = array[pos / 2];
 			} else {
 				break;
@@ -55,11 +56,11 @@ public class Heap {
 		array = Arrays.copyOf(array, array.length * 2);
 	}
 
-	public int extractMin() throws Exception {
+	public T extractMin(){
 		if (isEmpty()) {
-			throw new Exception("Empty Heap");
+			return null;
 		}
-		int min = array[1];
+		T min = array[1];
 		array[1] = array[size];
 		size--;
 		percolateDown(1);
@@ -68,14 +69,14 @@ public class Heap {
 	}
 
 	public void percolateDown(int pos) {
-		int t = array[pos];
+		T t = array[pos];
 		int child;
 		for (; pos * 2 <= size; pos = child) {
 			child = pos * 2; // pick left child
-			if (child != size && array[child + 1] < array[child]){
+			if (child != size && array[child + 1].compareTo(array[child]) < 0){
 				child++; // if there is right child and right child is smaller, pick right child
 			}
-			if (array[child] < t){ 
+			if (array[child].compareTo(t) < 0){ 
 				array[pos] = array[child];
 			} else {
 				break;
@@ -85,14 +86,14 @@ public class Heap {
 	}
 
 	public static void main(String[] args) throws Exception {
-		int[] a = {5, 4, 7, 2, 8, 9, 1, 3, 0, 6};
-		Heap h = new Heap(a);
-		h.print();
-		h.insert(5);
-		h.print();
-		int m1 = h.extractMin();
-		System.out.println(m1);
-		h.print();
+//		int[] a = {5, 4, 7, 2, 8, 9, 1, 3, 0, 6};
+//		Heap h = new Heap(a);
+//		h.print();
+//		h.insert(5);
+//		h.print();
+//		int m1 = h.extractMin();
+//		System.out.println(m1);
+//		h.print();
 	}
 
 	public void print() {

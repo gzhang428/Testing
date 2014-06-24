@@ -6,7 +6,11 @@ public class HeapSort extends Sort {
 
 	@Override
 	public void sort(int[] a) {
-		Heap heap = new Heap(a);
+		Integer[] array = new Integer[a.length];
+		for (int i = 0; i < a.length; i ++){
+			array[i] = a[i];
+		}
+		Heap<Integer> heap = new Heap<Integer>(array);
 		for (int i = 0; i < a.length; i ++){
 			try {
 				a[i] = heap.extractMin();
