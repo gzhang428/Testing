@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class Vertex {
+public class Vertex implements Comparable<Vertex> {
 	public int index;
 	public boolean visited;
 	public int distance;
@@ -51,6 +51,10 @@ public class Vertex {
 		if (index != other.index)
 			return false;
 		return true;
+	}
+	@Override
+	public int compareTo(Vertex v) {
+		return distance - v.distance;
 	}
 	
 }
