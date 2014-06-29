@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import algorithm.Heap;
+import algorithm.MinHeap;
 
 public class DijkstraShortestPath {
 
@@ -82,7 +82,7 @@ public class DijkstraShortestPath {
 	public int findShortestPathWithHeap(Graph g, int start, int end){
 		Vertex startVertex = g.vertice[start];
 		startVertex.distance = 0;
-		Heap<Vertex> heap = new Heap<Vertex>(g.vertice);
+		MinHeap<Vertex> heap = new MinHeap<Vertex>(g.vertice);
 		
 		while(!heap.isEmpty()) {
 			Vertex vertex = null;

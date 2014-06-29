@@ -1,6 +1,6 @@
 package algorithm.sort;
 
-import algorithm.Heap;
+import algorithm.MinHeap;
 
 public class HeapSort extends Sort {
 
@@ -10,7 +10,7 @@ public class HeapSort extends Sort {
 		for (int i = 0; i < a.length; i ++){
 			array[i] = a[i];
 		}
-		Heap<Integer> heap = new Heap<Integer>(array);
+		MinHeap<Integer> heap = new MinHeap<Integer>(array);
 		for (int i = 0; i < a.length; i ++){
 			try {
 				a[i] = heap.extractMin();
