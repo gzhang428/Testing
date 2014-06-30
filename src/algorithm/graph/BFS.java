@@ -12,18 +12,22 @@ public class BFS {
 		BFS bfs  = new BFS();
 		Graph g = bfs.createGraph();
 		System.out.println(g);
-		bfs.search(g, 0);
+		try {
+			bfs.search(g, 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println(g);
 	}
 
 
-	private void search(Graph g, int start) {
+	public void search(Graph g, int start) throws Exception {
 		Queue<Vertex> queue = new Queue<Vertex>();
 		Vertex startVertex = g.vertice[start];
 		startVertex.distance = 0;
 		startVertex.visited = true;
 		queue.enqueue(startVertex);
-		while(!queue.empty()){
+		while(!queue.isEmpty()){
 			Vertex v = queue.dequeue();
 			List<Edge> edges = v.edges;
 			for (Edge edge: edges){

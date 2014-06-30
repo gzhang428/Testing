@@ -18,9 +18,11 @@ public class DijkstraShortestPath {
 		Graph g = dijkstraShortestPath.readGraph("dijkstraData.txt");
 		int d = dijkstraShortestPath.findShortestPath(g, start, end);
 		System.out.println(d);
+		try{
 		Graph g2 = dijkstraShortestPath.readGraph("dijkstraData.txt");
 		int d2 = dijkstraShortestPath.findShortestPathWithHeap(g2, start, end );
 		System.out.println(d2);
+		}catch(Exception e){}
 	}
 
 	private Graph readGraph(String file) {
@@ -79,16 +81,14 @@ public class DijkstraShortestPath {
 	}
 	
 	
-	public int findShortestPathWithHeap(Graph g, int start, int end){
+	public int findShortestPathWithHeap(Graph g, int start, int end) throws Exception{
 		Vertex startVertex = g.vertice[start];
 		startVertex.distance = 0;
 		MinHeap<Vertex> heap = new MinHeap<Vertex>(g.vertice);
 		
 		while(!heap.isEmpty()) {
 			Vertex vertex = null;
-			try {
-				vertex = heap.extractMin();
-			} catch (Exception e) {	}
+			vertex = heap.extractMin();
 			vertex.visited = true;
 			if (vertex == g.vertice[end]){
 				return vertex.distance;
@@ -96,9 +96,7 @@ public class DijkstraShortestPath {
 			for(Edge edge: vertex.edges){
 				Vertex endVertex = edge.end;
 				if (!endVertex.visited && vertex.distance + edge.weight < endVertex.distance){
-					try {
-						heap.delete(endVertex);
-					} catch (Exception e) {	}
+					heap.delete(endVertex);
 					endVertex.distance = vertex.distance + edge.weight;
 					heap.insert(endVertex);
 				}

@@ -10,23 +10,27 @@ public class Queue<T> {
 		q = new LinkedList<T>();
 	}
 	
-	public boolean empty(){
+	public boolean isEmpty(){
 		return q.isEmpty();
+	}
+	
+	public int size(){
+		return q.size();
 	}
 	
 	public void enqueue(T t){
 		q.add(t);
 	}
 	
-	public T dequeue(){
+	public T dequeue() throws Exception{
 		if(q.isEmpty()){
-			return null;
+			throw new Exception();
 		}
 		return q.remove(0);
 	}
-	public T peek(){
+	public T peek() throws Exception{
 		if(q.isEmpty()){
-			return null;
+			throw new Exception();
 		}
 		return q.get(0);
 	}
